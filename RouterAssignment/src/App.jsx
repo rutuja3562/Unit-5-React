@@ -5,7 +5,8 @@ import { Users } from './components/User';
 import { Nav } from './components/Nav';
 import { Home } from './components/Home';
 import { ProductDetails } from './components/ProductDetails';
-
+import {Error} from "./components/Error";
+import {Cart} from "./components/Cart"
 function App() {
 
 
@@ -17,6 +18,8 @@ function App() {
         <Route path="/product" element={<Product />}></Route>
         <Route path="/product/:id" element={<ProductDetails />}></Route>
         <Route path="/users" element={<Users />}></Route>
+        <Route path="*" element={<Error />} />
+        <Route  path = "/cart" element={<Cart/>} />
       </Routes>
     </div>
   );

@@ -4,18 +4,21 @@ import { useParams } from "react-router-dom";
 export const ProductDetails = () => {
   const [data, setData] = useState({});
   const { id } = useParams();
+  //   let cartArr = JSON.parse(localStorage.getItem("cartItem")) || [];
+  let cartArr = JSON.parse(localStorage.getItem("cartItems")) || [];
   useEffect(() => {
     axios.get(`https://fakestoreapi.com/products/${id}`).then(({ data }) => {
       setData(data);
     });
   });
-// if(id !== data.id){
-// console.log(id,data.id);
 
-    // return (
-    //     <h1>404 page NOT FOUND</h1>
-    // )
-// }
+  const addtocart = (data) => {
+    console.log(data);
+    cartArr.push(data);
+    console.log(cartArr);
+    localStorage.setItem("cartItems", JSON.stringify(cartArr));
+
+  };
   return (
     <div>
       <img
@@ -25,6 +28,7 @@ export const ProductDetails = () => {
       />
       <p>Title: {data.title}</p>
       <p>Price: {data.price}</p>
+      <button onClick={() => addtocart(data)}>Add to card</button>
     </div>
   );
 };
